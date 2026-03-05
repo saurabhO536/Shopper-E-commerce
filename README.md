@@ -63,6 +63,62 @@ SHOPPER/
 └── vite.config.js             # Vite config
 ```
 
+## 🚀 Frontend Tech Stack
+
+### Core
+
+- **React 19** – Component-based UI library
+- **Vite** – Fast development and build tool
+- **React Router DOM** – Client-side routing and navigation
+
+### Styling & UI
+
+- **Tailwind CSS v4** – Utility-first CSS framework
+- **Radix UI** – Accessible UI primitives
+- **Lucide React** – Modern icon library
+- **React Icons** – Icon support for UI elements
+- **class-variance-authority (CVA)** – Manage component variants
+- **clsx + tailwind-merge** – Conditional Tailwind class handling
+
+### Animations
+
+- **Motion (Framer Motion)** – UI animations and transitions
+
+### Notifications
+
+- **React Toastify** – Toast notifications for user feedback
+
+---
+
+## 📦 Key Packages Used
+
+```bash
+react
+react-dom
+vite
+react-router-dom
+tailwindcss
+@radix-ui/react-navigation-menu
+lucide-react
+react-icons
+motion
+react-toastify
+clsx
+class-variance-authority
+tailwind-merge
+```
+
+---
+
+## 🛠 Development Tools
+
+```bash
+eslint
+prettier
+husky
+lint-staged
+```
+
 # Clone Repo
 
 ```ts
