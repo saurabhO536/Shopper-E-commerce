@@ -5,18 +5,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ShopContext } from './context/ShopContext'
 import { toast } from 'react-toastify'
 import { Button } from './ui/button'
-
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu'
+import { ChevronDown } from 'lucide-react'
 
 const Navbar = () => {
   const [menu, setMenu] = useState('shop')
+  const [showDropdown, setShowDropdown] = useState(false)
+
   const { getTotalItem } = useContext(ShopContext)
   const navigate = useNavigate()
 
@@ -48,162 +42,139 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="sticky top-0 z-10 bg-white shadow-[0px_1px_3px_-2px_black]">
-      <div className="flex flex-col lg:flex-row items-center justify-around gap-5 p-3">
+    <nav className="sticky top-0 z-50 bg-white shadow-md h-16">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
         {/* Logo */}
-        <div className="flex flex-col sm:flex-row items-center gap-2.5">
-          <img src={logo} alt="logo" className="w-10 h-10" />
+        <div className="flex items-center gap-2">
+          <img src={logo} alt="logo" className="w-9 h-9" />
+
           <Link
             to="/"
-            className="text-2xl sm:text-3xl lg:text-4xl font-semibold
-                       bg-linear-to-r from-red-500 to-black
-                       bg-clip-text text-transparent"
+            className="text-3xl font-semibold bg-gradient-to-r from-red-500 to-black bg-clip-text text-transparent"
           >
             SHOPPER
           </Link>
         </div>
 
-        {/* shadcn Navigation Menu */}
-        <NavigationMenu>
-          <NavigationMenuList className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 lg:gap-8">
-            {/* Shop */}
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link
-                  to="/"
-                  onClick={() => handleMenuClick('shop')}
-                  className="text-lg sm:text-xl lg:text-2xl font-normal text-black no-underline flex flex-col items-center"
-                >
-                  Shop
-                  {menu === 'shop' && (
-                    <hr className="mt-1 h-0.75 w-[85%] rounded-full bg-blue-900" />
-                  )}
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
+        {/* Navigation */}
+        <ul className="flex items-center gap-8 text-lg font-medium">
+          <li>
+            <Link
+              to="/"
+              onClick={() => handleMenuClick('shop')}
+              className="flex flex-col items-center hover:text-red-500 lg:text-2xl"
+            >
+              Shop
+              {menu === 'shop' && (
+                <div className="h-[2px] w-full bg-red-500 mt-1"></div>
+              )}
+            </Link>
+          </li>
 
-            {/* Mens */}
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
+          <li>
+            <Link
+              to="/mens"
+              onClick={() => handleMenuClick('mens')}
+              className="flex flex-col items-center hover:text-red-500 lg:text-2xl"
+            >
+              Mens
+              {menu === 'mens' && (
+                <div className="h-[2px] w-full bg-red-500 mt-1"></div>
+              )}
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              to="/womens"
+              onClick={() => handleMenuClick('womens')}
+              className="flex flex-col items-center hover:text-red-500 lg:text-2xl"
+            >
+              Womens
+              {menu === 'womens' && (
+                <div className="h-[2px] w-full bg-red-500 mt-1"></div>
+              )}
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              to="/kids"
+              onClick={() => handleMenuClick('kids')}
+              className="flex flex-col items-center hover:text-red-500 lg:text-2xl"
+            >
+              Kids
+              {menu === 'kids' && (
+                <div className="h-[2px] w-full bg-red-500 mt-1"></div>
+              )}
+            </Link>
+          </li>
+
+          {/* Products Dropdown */}
+          <li
+            className="relative"
+            onMouseEnter={() => setShowDropdown(true)}
+            onMouseLeave={() => setShowDropdown(false)}
+          >
+            <button className="flex items-center gap-1 hover:text-red-500 lg:text-2xl">
+              Products
+              <ChevronDown
+                size={18}
+                className={`transition-transform duration-200 ${
+                  showDropdown ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
+
+            {showDropdown && (
+              <div className="absolute left-1/2 -translate-x-1/2 top-[62px] w-64 bg-white border rounded-md shadow-lg flex flex-col">
+                {' '}
                 <Link
                   to="/mens"
                   onClick={() => handleMenuClick('mens')}
-                  className="text-lg sm:text-xl lg:text-2xl font-normal text-black no-underline flex flex-col items-center"
+                  className="px-4 py-2 hover:bg-gray-100 hover:text-red-500 lg:text-2xl"
                 >
-                  Mens
-                  {menu === 'mens' && (
-                    <hr className="mt-1 h-0.75 w-[85%] rounded-full bg-blue-900" />
-                  )}
+                  Mens Collection
                 </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            {/* Womens */}
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
                 <Link
                   to="/womens"
                   onClick={() => handleMenuClick('womens')}
-                  className="text-lg sm:text-xl lg:text-2xl font-normal text-black no-underline flex flex-col items-center"
+                  className="px-4 py-2 hover:bg-gray-100 hover:text-red-500 lg:text-2xl"
                 >
-                  Womens
-                  {menu === 'womens' && (
-                    <hr className="mt-1 h-0.75 w-[85%] rounded-full bg-blue-900" />
-                  )}
+                  Womens Collection
                 </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            {/* Kids */}
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
                 <Link
                   to="/kids"
                   onClick={() => handleMenuClick('kids')}
-                  className="text-lg sm:text-xl lg:text-2xl font-normal text-black no-underline flex flex-col items-center"
+                  className="px-4 py-2 hover:bg-gray-100 hover:text-red-500 lg:text-2xl"
                 >
-                  Kids
-                  {menu === 'kids' && (
-                    <hr className="mt-1 h-0.75 w-[85%] rounded-full bg-blue-900" />
-                  )}
+                  Kids Collection
                 </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            {/* OPTIONAL: Products dropdown (example) */}
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-lg sm:text-xl lg:text-2xl font-normal">
-                Products
-              </NavigationMenuTrigger>
-
-              <NavigationMenuContent>
-                <div className="grid gap-2 p-4 w-[280px]">
-                  <NavigationMenuLink asChild>
-                    <Link
-                      to="/mens"
-                      onClick={() => handleMenuClick('mens')}
-                      className="rounded-md p-2 hover:bg-gray-100 cursor-pointer"
-                    >
-                      Mens Collection
-                    </Link>
-                  </NavigationMenuLink>
-
-                  <NavigationMenuLink asChild>
-                    <Link
-                      to="/womens"
-                      onClick={() => handleMenuClick('womens')}
-                      className="rounded-md p-2 hover:bg-gray-100 cursor-pointer"
-                    >
-                      Womens Collection
-                    </Link>
-                  </NavigationMenuLink>
-
-                  <NavigationMenuLink asChild>
-                    <Link
-                      to="/kids"
-                      onClick={() => handleMenuClick('kids')}
-                      className="rounded-md p-2 hover:bg-gray-100 cursor-pointer"
-                    >
-                      Kids Collection
-                    </Link>
-                  </NavigationMenuLink>
-                </div>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+              </div>
+            )}
+          </li>
+        </ul>
 
         {/* Cart + Auth */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 relative">
-          {isLoggedIn && (
-            <p className="text-sm sm:text-base">Welcome, {username}</p>
-          )}
+        <div className="flex items-center gap-4 relative">
+          {isLoggedIn && <p className="text-sm">Welcome, {username}</p>}
 
           {!isLoggedIn && (
             <Link to="/login">
-              <Button className="w-35.5 h-11.5 border border-black bg-white text-black hover:bg-teal-300">
+              <Button className="px-6 py-2 bg-teal-500 text-white hover:bg-teal-600 ">
                 Login
               </Button>
             </Link>
           )}
 
-          {isLoggedIn && (
-            <Button onClick={logout} className="w-37.5 h-12.5 rounded-full">
-              Logout
-            </Button>
-          )}
+          {isLoggedIn && <Button onClick={logout}>Logout</Button>}
 
           <div className="relative">
             <Link to="/cart">
-              <img src={cart_icon} alt="cart" className="w-8 h-8" />
+              <img src={cart_icon} alt="cart" className="w-7" />
             </Link>
 
-            <div
-              className="absolute -top-3 -right-3 h-5.5 w-5.5
-                         bg-red-600 text-white rounded-full
-                         flex items-center justify-center
-                         text-sm font-extrabold"
-            >
+            <div className="absolute -top-2 -right-2 w-5 h-5 bg-red-600 text-white rounded-full flex items-center justify-center text-xs font-bold">
               {getTotalItem()}
             </div>
           </div>
