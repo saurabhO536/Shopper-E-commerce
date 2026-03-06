@@ -5,11 +5,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ShopContext } from './context/ShopContext'
 import { toast } from 'react-toastify'
 import { Button } from './ui/button'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, Search } from 'lucide-react'
 
 const Navbar = () => {
   const [menu, setMenu] = useState('shop')
   const [showDropdown, setShowDropdown] = useState(false)
+  const [search, setSearch] = useState('')
 
   const { getTotalItem } = useContext(ShopContext)
   const navigate = useNavigate()
@@ -154,6 +155,18 @@ const Navbar = () => {
             )}
           </li>
         </ul>
+        {/* Search Bar */}
+        <div className="hidden md:flex items-center bg-gray-100 px-4 py-7 rounded-full w-[300px] focus-within:ring-2 focus-within:ring-red-400 transition">
+          <Search size={20} className="text-gray-500" />
+
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="bg-transparent outline-none px-3 text-sm w-full"
+          />
+        </div>
 
         {/* Cart + Auth */}
         <div className="flex items-center gap-4 relative">
