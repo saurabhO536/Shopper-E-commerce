@@ -17,92 +17,94 @@ import SignUp from './Pages/SignUp'
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <PageWrapper>
-              <Shop />
-            </PageWrapper>
-          }
-        ></Route>
-        <Route
-          path="/product"
-          element={
-            <PageWrapper>
-              {' '}
-              <Product />{' '}
-            </PageWrapper>
-          }
-        >
+      <div className="overflow-x-hidden">
+        <Navbar />
+        <Routes>
           <Route
-            path=":productId"
+            path="/"
+            element={
+              <PageWrapper>
+                <Shop />
+              </PageWrapper>
+            }
+          ></Route>
+          <Route
+            path="/product"
             element={
               <PageWrapper>
                 {' '}
                 <Product />{' '}
               </PageWrapper>
             }
+          >
+            <Route
+              path=":productId"
+              element={
+                <PageWrapper>
+                  {' '}
+                  <Product />{' '}
+                </PageWrapper>
+              }
+            ></Route>
+          </Route>
+
+          <Route
+            path="/mens"
+            element={
+              <PageWrapper>
+                {' '}
+                <ShopCategory category={'men'} banner={banner_mens} />{' '}
+              </PageWrapper>
+            }
+          >
+            {' '}
+          </Route>
+          <Route
+            path="/womens"
+            element={
+              <PageWrapper>
+                {' '}
+                <ShopCategory category={'women'} banner={banner_women} />{' '}
+              </PageWrapper>
+            }
           ></Route>
-        </Route>
+          <Route
+            path="/kids"
+            element={
+              <PageWrapper>
+                <ShopCategory category={'kid'} banner={banner_kids} />
+              </PageWrapper>
+            }
+          ></Route>
 
-        <Route
-          path="/mens"
-          element={
-            <PageWrapper>
-              {' '}
-              <ShopCategory category={'men'} banner={banner_mens} />{' '}
-            </PageWrapper>
-          }
-        >
-          {' '}
-        </Route>
-        <Route
-          path="/womens"
-          element={
-            <PageWrapper>
-              {' '}
-              <ShopCategory category={'women'} banner={banner_women} />{' '}
-            </PageWrapper>
-          }
-        ></Route>
-        <Route
-          path="/kids"
-          element={
-            <PageWrapper>
-              <ShopCategory category={'kid'} banner={banner_kids} />
-            </PageWrapper>
-          }
-        ></Route>
+          <Route
+            path="/login"
+            element={
+              <PageWrapper>
+                <LoginSignUp />
+              </PageWrapper>
+            }
+          ></Route>
+          <Route
+            path="/signup"
+            element={
+              <PageWrapper>
+                <SignUp />
+              </PageWrapper>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <PageWrapper>
+                <Cart />
+              </PageWrapper>
+            }
+          ></Route>
+        </Routes>
 
-        <Route
-          path="/login"
-          element={
-            <PageWrapper>
-              <LoginSignUp />
-            </PageWrapper>
-          }
-        ></Route>
-        <Route
-          path="/signup"
-          element={
-            <PageWrapper>
-              <SignUp />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/cart"
-          element={
-            <PageWrapper>
-              <Cart />
-            </PageWrapper>
-          }
-        ></Route>
-      </Routes>
-
-      <Footer />
+        <Footer />
+      </div>
     </BrowserRouter>
   )
 }

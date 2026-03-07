@@ -1,26 +1,31 @@
 import React from 'react'
 import new_collections from '../../assets/new_collections'
-import './NewCollection.css'
 import Item from '../Item/Item'
 
 const NewCollection = () => {
   return (
-    <div className="new-collection">
-      <h1>New Collection</h1>
-      <hr />
-      <div className="collection">
-        {new_collections.map((item, i) => {
-          return (
-            <Item
-              key={i}
-              id={item.id}
-              name={item.name}
-              image={item.image}
-              new_price={item.new_price}
-              old_price={item.old_price}
-            />
-          )
-        })}
+    <div className="flex flex-col items-center py-12 px-6">
+      <h1 className="text-3xl md:text-5xl font-semibold text-[#171717]">
+        New Collection
+      </h1>
+
+      <hr className="w-[120px] h-[4px] rounded-full bg-gray-800 mt-3 mb-10" />
+
+      <div
+        className="
+        grid
+        grid-cols-1
+        sm:grid-cols-2
+        md:grid-cols-3
+        lg:grid-cols-4
+        gap-6
+        w-full
+        max-w-7xl
+      "
+      >
+        {new_collections.map((item) => (
+          <Item key={item.id} {...item} />
+        ))}
       </div>
     </div>
   )
