@@ -119,6 +119,32 @@ husky
 lint-staged
 ```
 
+## Git Commit Guidelines
+
+### **Want to commit follow this !**
+
+**Commit Types**
+
+- `feat` – new feature
+- `fix` – bug fix
+- `refactor` – improve code structure
+- `chore` – maintenance tasks
+- `remove` – delete files/code
+
+**Examples**
+
+```bash
+feat: add product API
+
+fix: resolve login authentication issue
+
+refactor: remove unused functions
+
+chore: update dependencies
+
+remove: delete unused components
+```
+
 # Clone Repo
 
 ```ts
